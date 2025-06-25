@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="오토포레스트 - 신차, 중고차, 리스, 렌트 전문 자동차 금융 상담. 최저가 보장, 즉시 승인 가능">
+    <meta name="theme-color" content="#0F4C75">
+    <title>오토포레스트 - 자동차 금융의 모든 것 | 무료 상담</title>
+    
+    <!-- 성능 최적화를 위한 CSS 로딩 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* 성능 최적화 */
+        .will-animate {
+            will-change: transform;
+        }
+        
+        /* 플로팅 상담 버튼 - 모바일 최적화 */
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .floating-cta {
+            background: #FF6B35;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+            font-weight: bold;
+            border: none;
+            font-size: 15px;
+            min-height: 48px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .kakao-cta {
+            background: #FEE500;
+            color: #000;
+            box-shadow: 0 4px 20px rgba(254, 229, 0, 0.3);
+        }
+        
+        .kakao-cta:hover {
+            background: #fdd800;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* 히어로 섹션 - 모바일 최적화 */
+        .hero {
+            background: linear-gradient(135deg, #0F4C75 0%, #3282B8 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: clamp(28px, 8vw, 48px);
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(18px, 5vw, 24px);
+            margin-bottom: 10px;
+            color: #BBE1FA;
+        }
+        
+        .hero-description {
+            font-size: clamp(16px, 4vw, 18px);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .cta-button {
+            background: #FF6B35;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            min-height: 56px;
+            white-space: nowrap;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: #ff5722;
+        }
+        
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+        
+        /* 신뢰 지표 섹션 - 모바일 최적화 */
+        .trust-indicators {
+            background: #f8f9fa;
+            padding: 40px 16px;
+            text-align: center;
+        }
+        
+        .trust-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .trust-item {
+            background: white;
+            padding: 24px 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .trust-item:active {
+            transform: scale(0.98);
+        }
+        
+        .trust-number {
+            font-size: clamp(32px, 8vw, 48px);
+            font-weight: bold;
+            color: #0F4C75;
+            margin-bottom: 8px;
+        }
+        
+        .trust-label {
+            font-size: clamp(14px, 3vw, 18px);
+            color: #666;
+        }
+        
+        /* 서비스 카드 - 모바일 최적화 */
+        .services {
+            padding: 60px 16px;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(24px, 6vw, 36px);
+            margin-bottom: 16px;
+            color: #0F4C75;
+            line-height: 1.3;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(16px, 3.5vw, 18px);
+            color: #666;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .service-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:active {
+            transform: scale(0.98);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #0F4C75;
+        }
+        
+        .service-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        /* 프로세스 섹션 - 모바일 최적화 */
+        .process {
+            background: #f8f9fa;
+            padding: 60px 16px;
+        }
+        
+        .process-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .process-item {
+            margin-bottom: 32px;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .process-item::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 48px;
+            bottom: -32px;
+            width: 2px;
+            background: #3282B8;
+        }
+        
+        .process-item:last-child::before {
+            display: none;
+        }
+        
+        .process-content {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .process-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #0F4C75;
+        }
+        
+        .process-content p {
+            font-size: 15px;
+            color: #666;
+        }
+        
+        .process-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #FF6B35;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* 상담 신청 폼 - 모바일 최적화 */
+        .consultation-form {
+            background: linear-gradient(135deg, #0F4C75 0%, #3282B8 100%);
+            padding: 60px 16px;
+            color: white;
+            text-align: center;
+        }
+        
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-title {
+            font-size: clamp(24px, 6vw, 32px);
+            margin-bottom: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        /* iOS 입력 필드 확대 방지 */
+        input[type="text"],
+        input[type="tel"],
+        select {
+            font-size: 16px !important;
+        }
+        
+        .submit-button {
+            background: #FF6B35;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 24px;
+            min-height: 56px;
+        }
+        
+        .submit-button:active {
+            transform: scale(0.98);
+        }
+        
+        /* 긴급성 배너 - 모바일 최적화 */
+        .urgency-banner {
+            background: #FF6B35;
+            color: white;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            animation: slideDown 0.5s ease-out;
+            font-size: clamp(14px, 3vw, 16px);
+            line-height: 1.4;
+        }
+        
+        /* 모달 - 모바일 최적화 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .modal-content h2 {
+            font-size: 24px;
+        }
+        
+        .modal-content p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        /* 빠른 연락 바 - 모바일 전용 */
+        .quick-contact-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 998;
+        }
+        
+        .quick-contact-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #e0e0e0;
+        }
+        
+        .quick-contact-btn {
+            background: white;
+            padding: 16px;
+            border: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        
+        .quick-contact-btn:active {
+            background: #f0f0f0;
+        }
+        
+        .quick-contact-btn.primary {
+            background: #0F4C75;
+            color: white;
+        }
+        
+        .quick-contact-btn.primary:active {
+            background: #0a3a5a;
+        }
+        
+        /* 태블릿 및 데스크톱 반응형 */
+        @media (min-width: 768px) {
+            .hero {
+                padding: 100px 20px 80px;
+                min-height: auto;
+            }
+            
+            .trust-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                border-color: #3282B8;
+            }
+            
+            .process-timeline {
+                position: relative;
+            }
+            
+            .process-timeline::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: #3282B8;
+                transform: translateX(-50%);
+            }
+            
+            .process-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 60px;
+                padding-left: 0;
+            }
+            
+            .process-item::before {
+                display: none;
+            }
+            
+            .process-item:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            
+            .process-content {
+                width: 45%;
+            }
+            
+            .process-number {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .quick-contact-bar {
+                display: none !important;
+            }
+            
+            .floating-buttons {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+        
+        /* 모바일 전용 스타일 */
+        @media (max-width: 767px) {
+            body {
+                padding-bottom: 60px;
+            }
+            
+            .quick-contact-bar {
+                display: block;
+            }
+            
+            .floating-buttons {
+                bottom: 70px;
+            }
+            
+            .urgency-banner {
+                padding-top: max(12px, env(safe-area-inset-top));
+            }
+            
+            .hero {
+                padding-top: max(80px, calc(60px + env(safe-area-inset-top)));
+            }
+        }
+        
+        /* 다크모드 지원 */
+        @media (prefers-color-scheme: dark) {
+            .trust-indicators,
+            .process {
+                background: #1a1a1a;
+            }
+            
+            .trust-item,
+            .service-card,
+            .process-content {
+                background: #2a2a2a;
+                color: #e0e0e0;
+                border-color: #444;
+            }
+            
+            .service-title,
+            .process-content h3 {
+                color: #BBE1FA;
+            }
+            
+            .trust-label,
+            .service-description,
+            .process-content p {
+                color: #b0b0b0;
+            }
+        }
+        
+        /* 접근성 개선 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* 포커스 스타일 */
+        button:focus,
+        input:focus,
+        select:focus,
+        a:focus {
+            outline: 3px solid #3282B8;
+            outline-offset: 2px;
+        }
+        
+        /* 애니메이션 줄이기 설정 */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 긴급성 배너 -->
+    <div class="urgency-banner" role="banner">
+        🎁 지금 상담 신청하시면 특별 혜택을 드립니다! 선착순 100명 한정
+    </div>
+    
+    <!-- 플로팅 상담 버튼 -->
+    <div class="floating-buttons">
+        <button class="floating-cta kakao-cta" onclick="openKakao()" aria-label="카카오톡 상담">
+            <span>💬</span>
+            <span>카톡 상담</span>
+        </button>
+        <button class="floating-cta will-animate" onclick="scrollToForm()" aria-label="상담 신청하기">
+            <span>📞</span>
+            <span>즉시 상담신청</span>
+        </button>
+    </div>
+    
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>자동차 금융,<br>이제 고민하지 마세요</h1>
+            <p class="hero-subtitle">오토포레스트가 정답을 찾아드립니다</p>
+            <p class="hero-description">
+                전 금융사 제휴 | 최저가 보장 | 즉시 상담 가능<br>
+                신차, 중고차, 리스, 렌트까지 한 번에 해결
+            </p>
+            <button class="cta-button" onclick="scrollToForm()" aria-label="무료 상담 받기">
+                지금 바로 무료 상담 받기 →
+            </button>
+        </div>
+    </section>
+    
+    <!-- 신뢰 지표 -->
+    <section class="trust-indicators" aria-label="신뢰 지표">
+        <div class="trust-container">
+            <div class="trust-item">
+                <div class="trust-number">15,000+</div>
+                <div class="trust-label">누적 상담 건수</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">98%</div>
+                <div class="trust-label">고객 만족도</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">24시간</div>
+                <div class="trust-label">빠른 응답 보장</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">50+</div>
+                <div class="trust-label">제휴 금융사</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 서비스 소개 -->
+    <section class="services" aria-label="서비스 소개">
+        <h2 class="section-title">오토포레스트만의<br class="mobile-only"> 특별한 서비스</h2>
+        <p class="section-subtitle">고객님의 상황에 맞는 최적의 금융 솔루션을 제공합니다</p>
+        
+        <div class="services-grid">
+            <article class="service-card">
+                <div class="service-icon" aria-hidden="true">🚗</div>
+                <h3 class="service-title">신차/중고차 할부</h3>
+                <p class="service-description">
+                    전 금융사 실시간 금리 비교<br>
+                    최저금리 보장 서비스<br>
+                    즉시 승인 가능
+                </p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-icon" aria-hidden="true">💰</div>
+                <h3 class="service-title">차량 담보대출</h3>
+                <p class="service-description">
+                    소유 차량으로 자금 마련<br>
+                    당일 입금 가능<br>
+                    최대 한도 보장
+                </p>
+            </article>
+            
+            <article class="service-card">
+                <div class="service-icon" aria-hidden="true">📋</div>
+                <h3 class="service-title">리스/장기렌트</h3>
+                <p class="service-description">
+                    세금 절감 효과<br>
+                    유지비 절감<br>
+                    저신용자도 가능
+                </p>
+            </article>
+        </div>
+    </section>
+    
+    <!-- 프로세스 -->
+    <section class="process" aria-label="상담 프로세스">
+        <h2 class="section-title">간단한 상담 프로세스</h2>
+        <p class="section-subtitle">복잡한 절차 없이 빠르고 간편하게</p>
+        
+        <div class="process-timeline">
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>1분 상담신청</h3>
+                    <p>간단한 정보 입력으로 상담 신청 완료</p>
+                </div>
+                <div class="process-number" aria-hidden="true">1</div>
+            </div>
+            
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>맞춤 견적 제공</h3>
+                    <p>전문 상담사가 최적의 조건 제시</p>
+                </div>
+                <div class="process-number" aria-hidden="true">2</div>
+            </div>
+            
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>계약 및 출고</h3>
+                    <p>빠른 심사와 즉시 출고 진행</p>
+                </div>
+                <div class="process-number" aria-hidden="true">3</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 상담 신청 폼 -->
+    <section class="consultation-form" id="consultForm" aria-label="상담 신청">
+        <div class="form-container">
+            <h2 class="form-title">지금 바로 상담 신청하세요</h2>
+            <p style="margin-bottom: 24px;">24시간 이내 전문 상담사가 연락드립니다</p>
+            
+            <form onsubmit="handleSubmit(event)" novalidate>
+                <div class="form-group">
+                    <label for="name">이름 <span aria-label="필수">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="홍길동" autocomplete="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">연락처 <span aria-label="필수">*</span></label>
+                    <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" autocomplete="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="car-model">관심 차종</label>
+                    <input type="text" id="car-model" name="car-model" placeholder="예: 아반떼, K5, 그랜저 등" autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">관심 서비스 <span aria-label="필수">*</span></label>
+                    <select id="service" name="service" required>
+                        <option value="">선택해주세요</option>
+                        <option value="신차할부">신차 할부</option>
+                        <option value="중고차할부">중고차 할부</option>
+                        <option value="리스">오토리스</option>
+                        <option value="장기렌트">장기렌트</option>
+                        <option value="무심사렌트">무심사렌트</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    무료 상담 신청하기
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- 모바일 빠른 연락 바 -->
+    <div class="quick-contact-bar" role="navigation" aria-label="빠른 연락">
+        <div class="quick-contact-buttons">
+            <a href="tel:010-2577-0365" class="quick-contact-btn primary">
+                <span>📞</span>
+                <span>전화 상담</span>
+            </a>
+            <button class="quick-contact-btn" onclick="scrollToForm()">
+                <span>📝</span>
+                <span>상담 신청</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 성공 모달 -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h2 style="color: #0F4C75; margin-bottom: 20px;">상담 신청이 완료되었습니다! 🎉</h2>
+            <p style="color: #666; margin-bottom: 30px;">
+                24시간 이내에 전문 상담사가<br>
+                연락드릴 예정입니다.
+            </p>
+            <button class="cta-button" onclick="closeModal()">확인</button>
+        </div>
+    </div>
+    
+    <script>
+        // 폼으로 스크롤
+        function scrollToForm() {
+            document.getElementById('consultForm').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        // 카카오톡 열기
+        function openKakao() {
+            // 아래 중 하나를 선택하여 실제 정보로 변경하세요
+            
+            // 옵션 1: 카카오톡 채널 (가장 일반적)
+            window.open('http://pf.kakao.com/_YOUR_CHANNEL_ID', '_blank');
+            
+            // 옵션 2: 카카오톡 오픈채팅
+            // window.open('https://open.kakao.com/o/sZoq0UYg', '_blank');
+            
+            // 옵션 3: 플러스친구 1:1 채팅 (모바일)
+            // window.location.href = 'kakaoplus://plusfriend/YOUR_FRIEND_ID';
+        }
+        
+        // 폼 제출 처리 - Google Sheets 직접 연동
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // 로딩 표시
+            const submitButton = event.target.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = '전송 중...';
+            submitButton.disabled = true;
+            
+            // 폼 데이터 수집
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                carModel: formData.get('car-model'),
+                service: formData.get('service')
+            };
+            
+            try {
+                // Google Apps Script Web App URL - 실제 URL로 변경하세요!
+                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSjiSZG0FRCoBqbqjBDbwlNLhfzouGNzxr28HbmNwEkqv3hPSRCV0hPHp5E79FieGykA/exec';
+                
+                // 데이터 전송
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // CORS 에러 방지
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // 성공 처리 (no-cors 모드에서는 응답을 읽을 수 없음)
+                console.log('상담 신청 완료:', data);
+                
+                // 성공 모달 표시
+                document.getElementById('successModal').style.display = 'flex';
+                
+                // 폼 초기화
+                event.target.reset();
+                
+                // Google Analytics 이벤트 (선택사항)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'consultation_submit', {
+                        'event_category': 'form',
+                        'event_label': data.service
+                    });
+                }
+                
+            } catch (error) {
+                console.error('전송 오류:', error);
+                alert('일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+            } finally {
+                // 버튼 복원
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        }
+        
+        // 모달 닫기
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+        
+        // 전화번호 자동 포맷팅
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/[^0-9]/g, '');
+                    let formattedValue = '';
+                    
+                    if (value.length <= 3) {
+                        formattedValue = value;
+                    } else if (value.length <= 7) {
+                        formattedValue = value.slice(0, 3) + '-' + value.slice(3);
+                    } else {
+                        formattedValue = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+                    }
+                    
+                    e.target.value = formattedValue;
+                });
+            }
+        });
+        
+        // 페이지 로드 5초 후 팝업
+        setTimeout(() => {
+            if (!sessionStorage.getItem('popupShown')) {
+                alert('🎁 지금 상담 신청하시면 특별 사은품을 드립니다!');
+                sessionStorage.setItem('popupShown', 'true');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
